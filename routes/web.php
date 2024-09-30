@@ -12,8 +12,9 @@ Route::view('/', 'welcome');
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
-
-Route::middleware(['auth'])->group(function () {
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Auth::routes(['verify' => true]);
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         if (Auth::user()->is_admin == 1) {
             return redirect()->route('Admindashboard');
@@ -79,9 +80,9 @@ Route::prefix('user')->middleware(['auth', user::class])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/user/download-id', [UserController::class, 'downloadId'])->name('user.downloadId');
 });
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+// Route::view('profile', 'profile')
+//     ->middleware(['auth'])
+//     ->name('profile');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 require __DIR__.'/auth.php';
