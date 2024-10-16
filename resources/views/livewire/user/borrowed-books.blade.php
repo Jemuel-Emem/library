@@ -1,7 +1,7 @@
-<div class="p-6 bg-white shadow-md rounded-lg mt-12 w-full lg:w-7/12">
+<div class="p-6 bg-white shadow-md rounded-lg mt-12 w-full lg:w-11/12">
     <h2 class="text-2xl font-semibold mb-4 text-center lg:text-left">My Borrowed Books</h2>
 
-    <!-- Adding block and overflow-x-auto for horizontal scrolling on small screens -->
+
     <div class="block w-full overflow-x-auto">
         <table class="min-w-full leading-normal">
             <thead>

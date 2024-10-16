@@ -15,21 +15,31 @@ class Books extends Component
 {
     use WithPagination;
 
+    public $searchTerm = '';
     public $returnDate;
     public $confirmmodal = false;
-    public $qrModal = false; // New modal for QR code
+    public $qrModal = false;
     public $selectedBookId = null;
     public $selectedBook = null;
     public $isAgreed = false;
     public $validationMessage = '';
-    public $qrCodeDataUrl = '';  // Store the QR code image data URL
+    public $qrCodeDataUrl = '';
 
     protected $listeners = ['openConfirmModal'];
 
     public function render()
     {
-        $books = Book::paginate(10);
+        $books = Book::where('title', 'like', '%' . $this->searchTerm . '%')
+            ->orWhere('author', 'like', '%' . $this->searchTerm . '%')
+            ->orWhere('category', 'like', '%' . $this->searchTerm . '%')
+            ->paginate(10);
+
         return view('livewire.user.books', ['books' => $books]);
+    }
+
+    public function search()
+    {
+
     }
 
     public function openConfirmModal($bookId)
@@ -40,6 +50,13 @@ class Books extends Component
         $this->isAgreed = false;
         $this->validationMessage = '';
     }
+
+    public function filterByCategory($category)
+{
+    $this->searchTerm = $category;
+    $this->search();
+}
+
 
     public function closeModal()
     {
@@ -73,18 +90,12 @@ class Books extends Component
                         'status' => 'Borrow',
                     ]);
 
-                    // Generate the QR Code
                     $qrCode = QrCode::create('Book ID: ' . $book->id . ', Title: ' . $book->title . ', Borrower: ' . Auth::user()->name);
                     $writer = new PngWriter();
                     $pngData = $writer->write($qrCode)->getString();
-
-                    // Create a base64 URL for QR image
                     $this->qrCodeDataUrl = 'data:image/png;base64,' . base64_encode($pngData);
 
-                    // Show QR modal after successful borrow
                     $this->qrModal = true;
-
-                    // Close borrow modal
                     $this->closeModal();
                 } catch (\Exception $e) {
                     Log::error('Error borrowing book: ' . $e->getMessage());
