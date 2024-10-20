@@ -53,7 +53,7 @@
         {{ $books->links() }}
     </div>
 
-    <!-- Add Book Modal -->
+
     <x-modal-card title="Add New Book" name="add_modal" wire:model.defer="add_modal">
         <div class="space-y-3">
             <div>
@@ -91,7 +91,11 @@
                     <option value="History">History</option>
                     <option value="Biography">Biography</option>
                     <option value="Fantasy">Fantasy</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Romance">Romance</option>
                 </select>
+
                 @error('category') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
             <div>

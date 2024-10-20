@@ -13,7 +13,11 @@
         <button wire:click="filterByCategory('History')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">History</button>
         <button wire:click="filterByCategory('Biography')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Biography</button>
         <button wire:click="filterByCategory('Fantasy')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Fantasy</button>
+        <button wire:click="filterByCategory('Mystery')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Mystery</button>
+        <button wire:click="filterByCategory('Thriller')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Thriller</button>
+        <button wire:click="filterByCategory('Romance')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Romance</button>
     </div>
+
 
 
     <div class="p-6 bg-white shadow-md rounded-lg mt-12">
