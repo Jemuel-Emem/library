@@ -8,11 +8,11 @@
             <tr class="bg-gray-200 text-gray-700">
                 <th class="px-4 py-2 border-b">Title</th>
                 <th class="px-4 py-2 border-b">ISBN</th>
-                <th class="px-4 py-2 border-b">Catalog</th>
+                {{-- <th class="px-4 py-2 border-b">Catalog</th> --}}
                 <th class="px-4 py-2 border-b">Author</th>
                 <th class="px-4 py-2 border-b">Publisher</th>
                 <th class="px-4 py-2 border-b">Category</th>
-                <th class="px-4 py-2 border-b">Description</th>
+                {{-- <th class="px-4 py-2 border-b">Description</th> --}}
                 <th class="px-4 py-2 border-b">Quantity</th>
                 <th class="px-4 py-2 border-b">Image</th>
                 <th class="px-4 py-2 border-b">Action</th>
@@ -23,11 +23,11 @@
                 <tr class="hover:bg-gray-100">
                     <td class="px-4 py-2 border-b">{{ $book->title }}</td>
                     <td class="px-4 py-2 border-b">{{ $book->isbn }}</td>
-                    <td class="px-4 py-2 border-b">{{ $book->catalog }}</td>
+                    {{-- <td class="px-4 py-2 border-b">{{ $book->catalog }}</td> --}}
                     <td class="px-4 py-2 border-b">{{ $book->author }}</td>
                     <td class="px-4 py-2 border-b">{{ $book->publisher }}</td>
                     <td class="px-4 py-2 border-b">{{ $book->category }}</td>
-                    <td class="px-4 py-2 border-b">{{ $book->description }}</td>
+                    {{-- <td class="px-4 py-2 border-b">{{ $book->description }}</td> --}}
                     <td class="px-4 py-2 border-b">{{ $book->quantity }}</td>
                     <td class="px-4 py-2 border-b">
                         @if ($book->image)
@@ -66,11 +66,11 @@
                 <input type="text" id="isbn" wire:model.defer="isbn" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('isbn') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
-            <div>
+            {{-- <div>
                 <label for="catalog" class="block text-sm font-medium text-gray-700">Catalog</label>
                 <input type="text" id="catalog" wire:model.defer="catalog" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('catalog') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
+            </div> --}}
             <div>
                 <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
                 <input type="text" id="author" wire:model.defer="author" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -98,11 +98,11 @@
 
                 @error('category') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
-            <div>
+            {{-- <div>
                 <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                 <textarea id="description" wire:model.defer="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                 @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
+            </div> --}}
 
             <div>
                 <label for="quantity" class="block text-sm font-medium text-gray-700">quantity</label>
@@ -136,11 +136,11 @@
                 <input type="text" id="isbn" wire:model.defer="isbn" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('isbn') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
-            <div>
+            {{-- <div>
                 <label for="catalog" class="block text-sm font-medium text-gray-700">Catalog</label>
                 <input type="text" id="catalog" wire:model.defer="catalog" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('catalog') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
+            </div> --}}
             <div>
                 <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
                 <input type="text" id="author" wire:model.defer="author" class="mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">

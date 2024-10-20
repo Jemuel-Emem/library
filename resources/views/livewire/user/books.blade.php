@@ -31,7 +31,7 @@
                     <div class="p-4 w-80">
                         <h3 class="text-xl font-semibold mb-2">{{ $book->title }}</h3>
                         <p class="text-gray-600 mb-1">ISBN: {{ $book->isbn }}</p>
-                        <p class="text-gray-600 mb-1">Catalog: {{ $book->catalog }}</p>
+                        {{-- <p class="text-gray-600 mb-1">Catalog: {{ $book->catalog }}</p> --}}
                         <p class="text-gray-600 mb-1">Author: {{ $book->author }}</p>
                         <p class="text-gray-600 mb-1">Publisher: {{ $book->publisher }}</p>
                         <p class="text-gray-600 mb-1">Category: {{ $book->category }}</p>

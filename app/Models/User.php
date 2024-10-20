@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'custom_id',
         'photo',
+        'phone_number',
     ];
 
     protected $table = 'users';

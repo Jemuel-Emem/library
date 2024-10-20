@@ -28,12 +28,12 @@ class AddBooks extends Component
     protected $rules = [
         'title' => 'required|string|max:255',
         'isbn' => 'required|string|max:13',
-        'catalog' => 'required|string|max:255',
+        // 'catalog' => 'required|string|max:255',
         'author' => 'required|string|max:255',
         'publisher' => 'required|string|max:255',
         'category' => 'required|string|max:255',
         'quantity' => 'required|string|max:255',
-        'description' => 'nullable|string',
+        // 'description' => 'nullable|string',
         'image' => 'nullable|image|max:2048',
     ];
     public function render()
@@ -57,11 +57,11 @@ class AddBooks extends Component
         Books::create([
             'title' => $this->title,
             'isbn' => $this->isbn,
-            'catalog' => $this->catalog,
+            // 'catalog' => $this->catalog,
             'author' => $this->author,
             'publisher' => $this->publisher,
             'category' => $this->category,
-            'description' => $this->description,
+            // 'description' => $this->description,
             'quantity' => $this->quantity,
             'image' => $imagePath,
         ]);
@@ -70,11 +70,11 @@ class AddBooks extends Component
         $this->reset([
             'title',
             'isbn',
-            'catalog',
+            // 'catalog',
             'author',
             'publisher',
             'category',
-            'description',
+            // 'description',
             'quantity',
             'image',
         ]);
@@ -95,11 +95,11 @@ class AddBooks extends Component
         $this->bookId = $id;
         $this->title = $this->editBook->title;
         $this->isbn = $this->editBook->isbn;
-        $this->catalog = $this->editBook->catalog;
+        // $this->catalog = $this->editBook->catalog;
         $this->author = $this->editBook->author;
         $this->publisher = $this->editBook->publisher;
         $this->category = $this->editBook->category;
-        $this->description = $this->editBook->description;
+        // $this->description = $this->editBook->description;
         $this->quantity = $this->editBook->quantity;
         $this->edit_modal = true;
     }
@@ -123,11 +123,11 @@ class AddBooks extends Component
         $book->update([
             'title' => $this->title,
             'isbn' => $this->isbn,
-            'catalog' => $this->catalog,
+            // 'catalog' => $this->catalog,
             'author' => $this->author,
             'publisher' => $this->publisher,
             'category' => $this->category,
-            'description' => $this->description,
+            // 'description' => $this->description,
             'quantity' => $this->quantity,
             'image' => $imagePath,
         ]);
@@ -135,11 +135,11 @@ class AddBooks extends Component
         $this->reset([
             'title',
             'isbn',
-            'catalog',
+            // 'catalog',
             'author',
             'publisher',
             'category',
-            'description',
+            // 'description',
             'quantity',
             'image',
         ]);
