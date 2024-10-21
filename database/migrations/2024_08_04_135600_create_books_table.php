@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('isbn')->unique();
-            $table->string('catalog')->nullable();
-            $table->text('description')->nullable();
             $table->string('author');
             $table->string('publisher');
             $table->string('category');

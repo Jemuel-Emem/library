@@ -11,7 +11,6 @@
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Borrower
                     </th>
-
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Phone Number
                     </th>
@@ -24,7 +23,7 @@
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Status
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide ">
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">
                         Actions
                     </th>
                 </tr>
@@ -38,7 +37,6 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             {{ $borrow->user->name ?? 'N/A' }}
                         </td>
-
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             {{ $borrow->user->phone_number ?? 'N/A' }}
                         </td>
@@ -53,8 +51,22 @@
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex space-x-2">
-                                <button wire:click="markAsReturned({{ $borrow->id }})" class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600">Return</button>
-                                <button wire:click="markAsNotReturned({{ $borrow->id }})" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">Not Return</button>
+                                <button
+                                    wire:click="markAsReturned({{ $borrow->id }})"
+                                    class="py-1 px-3 rounded
+                                    @if($borrow->status === 'Returned' || $borrow->status === 'Not Returned') bg-gray-400 text-gray-700 cursor-not-allowed @else bg-blue-500 text-white hover:bg-blue-600 @endif"
+                                    @if($borrow->status === 'Returned' || $borrow->status === 'Not Returned') disabled @endif
+                                >
+                                    Return
+                                </button>
+                                <button
+                                    wire:click="markAsNotReturned({{ $borrow->id }})"
+                                    class="py-1 px-3 rounded
+                                    @if($borrow->status === 'Returned' || $borrow->status === 'Not Returned') bg-gray-400 text-gray-700 cursor-not-allowed @else bg-red-500 text-white hover:bg-red-600 @endif"
+                                    @if($borrow->status === 'Returned' || $borrow->status === 'Not Returned') disabled @endif
+                                >
+                                    Not Return
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -66,7 +78,4 @@
             {{ $borrowedBooks->links() }}
         </div>
     </div>
-
-
-
 </div>
