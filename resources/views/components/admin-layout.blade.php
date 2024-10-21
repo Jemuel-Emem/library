@@ -141,7 +141,7 @@
 
 
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700">
+                    <a href="{{route('us')}}" class="flex items-center p-2 rounded-lg hover:bg-gray-700">
                         <i class="ri-team-fill"></i>
                         <span class="ms-3">Users</span>
                     </a>
