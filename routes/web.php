@@ -12,7 +12,8 @@ Route::view('/', 'welcome');
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logouts');
+
 Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {

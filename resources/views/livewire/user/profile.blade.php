@@ -18,9 +18,9 @@
             Edit Profile
         </x-button>
 
-        <button onclick="downloadUserId()" class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition">
+        {{-- <button onclick="downloadUserId()" class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition">
             Download Profile
-        </button>
+        </button> --}}
     </div>
 
     <!-- Edit Modal -->

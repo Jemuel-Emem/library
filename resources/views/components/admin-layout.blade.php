@@ -77,9 +77,7 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
-        .logout-button:hover {
-            background-color: #4CAF50; /* Bright green on hover */
-        }
+
     </style>
 </head>
 <body>
@@ -138,10 +136,21 @@
                         <span class="ms-3">Book Returned</span>
                     </a>
                 </li>
+
+
+
+
                 <li>
                     <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700">
                         <i class="ri-team-fill"></i>
                         <span class="ms-3">Users</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{route('logouts')}}" class=" mt-20 flex items-center p-2 rounded-lg hover:bg-red-600 bg-red-500">
+                        <i class="ri-logout-box-fill"></i>
+                        <span class="ms-3">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -154,6 +163,6 @@
         </main>
     </div>
 
-    <a href="{{route('logout')}}" class="logout-button">Logout</a>
+
 </body>
 </html>

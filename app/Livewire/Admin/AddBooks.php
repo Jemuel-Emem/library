@@ -38,7 +38,7 @@ class AddBooks extends Component
     ];
     public function render()
     {
-        $books = Books::paginate(8);
+        $books = Books::paginate(5);
         return view('livewire.admin.add-books', compact('books'));
     }
 
