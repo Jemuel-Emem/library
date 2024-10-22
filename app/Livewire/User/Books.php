@@ -90,10 +90,11 @@ class Books extends Component
                         'status' => 'Borrow',
                     ]);
 
-                    $qrCode = QrCode::create('Book ID: ' . $book->id . ', Title: ' . $book->title . ', Borrower: ' . Auth::user()->name);
+                    $qrCode = new QrCode('Book ID: ' . $book->id . ', Title: ' . $book->title . ', Borrower: ' . Auth::user()->name);
+
                     $writer = new PngWriter();
-                    $pngData = $writer->write($qrCode)->getString();
-                    $this->qrCodeDataUrl = 'data:image/png;base64,' . base64_encode($pngData);
+                    $result = $writer->write($qrCode);
+                    $this->qrCodeDataUrl = 'data:image/png;base64,' . base64_encode($result->getString());
 
                     $this->qrModal = true;
                     $this->closeModal();
@@ -108,4 +109,9 @@ class Books extends Component
             session()->flash('error', 'No book selected.');
         }
     }
+
+
+
+
+
 }
