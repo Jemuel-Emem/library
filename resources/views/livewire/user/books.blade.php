@@ -112,19 +112,63 @@
     <x-modal-card title="QR Code" name="qrModal" wire:model.defer="qrModal" class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
         <div class="flex flex-col items-center">
             @if ($qrCodeDataUrl)
+                <p class="mb-4">QR Code Data: Book ID: {{ $this->selectedBookId }}, Title: {{ $this->selectedBook->title }}, Borrower: {{ Auth::user()->name }}</p>
 
-                <img src="{{ $qrCodeDataUrl }}" alt="QR Code for Borrowed Book" class="mt-4 mb-4 w-64 h-64">
+                <!-- Display the QR code image -->
+                <img src="{{ $qrCodeDataUrl }}" alt="QR Code for Borrowed Book" class="w-64 h-64">
 
-
-                <a href="{{ $qrCodeDataUrl }}" download="borrowed_book_qr_code.png" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <!-- Provide a download link for the QR code -->
+                <a href="{{ $qrCodeDataUrl }}" download="borrowed_book_qr_code.png" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                     Download QR Code
                 </a>
 
-
                 <p class="text-gray-700 mt-4 text-center">
-                    Please download the QR code before closing this modal. You will need to present it at the library when picking up the borrowed book.
+                    Please download the QR code before closing this modal.
                 </p>
+            @else
+                <p class="text-red-500">QR Code data not found.</p>
             @endif
         </div>
     </x-modal-card>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        document.addEventListener('livewire:load', function () {
+            // Hook into Livewire message processed event to check when modal opens
+            Livewire.hook('message.processed', (message, component) => {
+                // Check if the QR Modal is open
+                if (component.fingerprint.name === 'user.books' && @json($qrModal)) {
+                    let qrCodeData = @json($qrCodeData);
+
+                    if (qrCodeData) {
+                        // Clear any previous QR code
+                        let qrCodeContainer = document.getElementById('qrcode');
+                        qrCodeContainer.innerHTML = ""; // Ensure previous QR codes are cleared
+
+                        // Generate new QR code
+                        new QRCode(qrCodeContainer, {
+                            text: qrCodeData, // The data from Livewire
+                            width: 256,
+                            height: 256
+                        });
+
+                        // Set the download link for the generated QR code
+                        setTimeout(() => {
+                            const qrImage = qrCodeContainer.querySelector('img'); // Grab the generated QR code image
+                            if (qrImage) {
+                                const downloadLink = document.getElementById("download-qr");
+                                downloadLink.href = qrImage.src;
+                                downloadLink.download = "borrowed_book_qr_code.png";
+                            }
+                        }, 100); // Wait a little to ensure the QR code is generated
+                    }
+                }
+            });
+        });
+    </script>
+
+
 </div>

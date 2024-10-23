@@ -24,6 +24,7 @@ class Books extends Component
     public $isAgreed = false;
     public $validationMessage = '';
     public $qrCodeDataUrl = '';
+    public $qrCodeData;
 
     protected $listeners = ['openConfirmModal'];
 
@@ -81,6 +82,7 @@ class Books extends Component
 
             if ($book) {
                 try {
+
                     BorrowBook::create([
                         'book_id' => $book->id,
                         'user_id' => $userId,
@@ -90,11 +92,12 @@ class Books extends Component
                         'status' => 'Borrow',
                     ]);
 
-                    $qrCode = new QrCode('Book ID: ' . $book->id . ', Title: ' . $book->title . ', Borrower: ' . Auth::user()->name);
 
-                    $writer = new PngWriter();
-                    $result = $writer->write($qrCode);
-                    $this->qrCodeDataUrl = 'data:image/png;base64,' . base64_encode($result->getString());
+                    $qrData = 'Book ID: ' . $book->id . ', Title: ' . $book->title . ', Borrower: ' . Auth::user()->name;
+
+
+                    $this->qrCodeDataUrl = 'https://api.qrserver.com/v1/create-qr-code/?data=' . urlencode($qrData) . '&size=300x300';
+
 
                     $this->qrModal = true;
                     $this->closeModal();
@@ -109,6 +112,11 @@ class Books extends Component
             session()->flash('error', 'No book selected.');
         }
     }
+
+
+
+
+
 
 
 
