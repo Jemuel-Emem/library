@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('isbn');
-            $table->string('catalog');
-            $table->text('description');
+         //   $table->string('catalog');
+           // $table->text('description');
             $table->string('author');
             $table->string('publisher');
             $table->string('category');

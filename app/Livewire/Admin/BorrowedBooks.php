@@ -23,19 +23,23 @@ class BorrowedBooks extends Component
     }
     public function markAsReturned($borrowbookId)
     {
-
-
         $borrowedBook = ProcessedBorrowBooks::find($borrowbookId);
 
         if ($borrowedBook) {
+
             $borrowedBook->update(['status' => 'Returned']);
-           flash( 'Book marked as returned.');
+
+
+            $book = $borrowedBook->book;
+            if ($book) {
+                $book->increment('quantity');
+            }
+
+            flash('Book marked as returned and quantity updated.');
         } else {
-         flash( 'Borrowed book not found.');
+            flash('Borrowed book not found.');
         }
-
     }
-
 
     public function markAsNotReturned($borrowbookId)
     {

@@ -71,6 +71,7 @@ class Books extends Component
 
     public function borrow()
     {
+
         if (!$this->isAgreed) {
             $this->validationMessage = 'You must agree to the terms and conditions.';
             return;
@@ -81,8 +82,13 @@ class Books extends Component
             $book = Book::find($this->selectedBookId);
 
             if ($book) {
-                try {
+                if ($book->quantity <= 0) {
+                    $this->validationMessage = 'This book is currently out of stock and cannot be borrowed.';
 
+                    return;
+                }
+
+                try {
                     BorrowBook::create([
                         'book_id' => $book->id,
                         'user_id' => $userId,
@@ -93,14 +99,16 @@ class Books extends Component
                     ]);
 
 
+                    //$book->decrement('quantity');
+
+
                     $qrData = 'Book ID: ' . $book->id . ', Title: ' . $book->title . ', Borrower: ' . Auth::user()->name;
-
-
                     $this->qrCodeDataUrl = 'https://api.qrserver.com/v1/create-qr-code/?data=' . urlencode($qrData) . '&size=300x300';
 
 
                     $this->qrModal = true;
                     $this->closeModal();
+
                 } catch (\Exception $e) {
                     Log::error('Error borrowing book: ' . $e->getMessage());
                     session()->flash('error', 'Error borrowing book. Please try again later.');

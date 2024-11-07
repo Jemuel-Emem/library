@@ -137,33 +137,32 @@
 
     <script>
         document.addEventListener('livewire:load', function () {
-            // Hook into Livewire message processed event to check when modal opens
+         
             Livewire.hook('message.processed', (message, component) => {
-                // Check if the QR Modal is open
+            
                 if (component.fingerprint.name === 'user.books' && @json($qrModal)) {
                     let qrCodeData = @json($qrCodeData);
 
                     if (qrCodeData) {
-                        // Clear any previous QR code
+                  
                         let qrCodeContainer = document.getElementById('qrcode');
-                        qrCodeContainer.innerHTML = ""; // Ensure previous QR codes are cleared
-
-                        // Generate new QR code
+                        qrCodeContainer.innerHTML = ""; 
+                      
                         new QRCode(qrCodeContainer, {
-                            text: qrCodeData, // The data from Livewire
+                            text: qrCodeData, 
                             width: 256,
                             height: 256
                         });
 
-                        // Set the download link for the generated QR code
+                     
                         setTimeout(() => {
-                            const qrImage = qrCodeContainer.querySelector('img'); // Grab the generated QR code image
+                            const qrImage = qrCodeContainer.querySelector('img');
                             if (qrImage) {
                                 const downloadLink = document.getElementById("download-qr");
                                 downloadLink.href = qrImage.src;
                                 downloadLink.download = "borrowed_book_qr_code.png";
                             }
-                        }, 100); // Wait a little to ensure the QR code is generated
+                        }, 100); 
                     }
                 }
             });
